@@ -6,7 +6,12 @@ import booksRoute from './routes/bookRoutes.js'
 
 const app = express();
 
-app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  method: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['content-Type'],
+})
+);
 
 app.get('/', (request, response) => {
   console.log(request);

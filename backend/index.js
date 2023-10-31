@@ -1,18 +1,21 @@
 import express, { request, response } from 'express';
 import mongoose from 'mongoose';
 import { PORT, MONGO_DB_URL } from './config.js';
-import { Book } from './models/bookModel.js';
 import booksRoute from './routes/bookRoutes.js'
 import cors from 'cors';
 
 const app = express();
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  method: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['content-Type'],
-})
-);
+app.use(express.json());
+
+app.use(cors());
+
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   method: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['content-Type'],
+// })
+// );
 
 app.get('/', (request, response) => {
   console.log(request);

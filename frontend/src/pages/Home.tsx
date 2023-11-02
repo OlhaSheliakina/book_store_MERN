@@ -5,7 +5,7 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import Spinner from '../components/Spinner';
 import { Book } from '../types/book';
 import BooksTable from '../components/BooksTable';
-import BooksCard from '../components/BooksCard';
+import BooksCards from '../components/BooksCards';
 
 const Home = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -49,7 +49,7 @@ const Home = () => {
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>
       </div>
-      {isLoading ? <Spinner /> : showType === 'table' ? (<BooksTable books={books} />) :(<BooksCard books={books}/>)}
+      {isLoading ? <Spinner /> : showType === 'table' ? (<BooksTable books={books} />) :(<BooksCards books={books}/>)}
     </div>
   );
 };

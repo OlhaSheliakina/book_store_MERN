@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
- import { useSnackbar } from 'notistack'
+import { useSnackbar } from 'notistack';
 
 const EditBook = () => {
   const [title, setTitle] = useState('');
@@ -16,19 +16,18 @@ const EditBook = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
-    .then((response) => {
-      setAuthor(response.data.data.author);
-      setPublishYear(response.data.data.publishYear);
-      setTitle(response.data.data.title);
-      setIsLoading(false);
-      console.log(response.data)
-    })
-    .catch((error) => {
-      setIsLoading(false);
-      alert('An error has occured. Please check console');
-      console.log(error);
-    })
+    axios
+      .get(`http://localhost:5555/books/${id}`)
+      .then((response) => {
+        setAuthor(response.data.data.author);
+        setPublishYear(response.data.data.publishYear);
+        setTitle(response.data.data.title);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
   }, [id]);
 
   const handleEditBook = () => {
@@ -42,12 +41,15 @@ const EditBook = () => {
       .post('http://localhost:5555/books', data)
       .then(() => {
         setIsLoading(false);
-        enqueueSnackbar('Book has been Edited successfully', { variant: 'success' });
+        enqueueSnackbar('Book has been Edited successfully', {
+          variant: 'success',
+        });
         navigate('/');
       })
       .catch((error) => {
         setIsLoading(false);
-        enqueueSnackbar('Error', { variant: 'error' });        console.log(error);
+        enqueueSnackbar('Error', { variant: 'error' });
+        console.log(error);
       });
   };
 

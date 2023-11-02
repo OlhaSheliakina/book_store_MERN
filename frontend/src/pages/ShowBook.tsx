@@ -22,9 +22,7 @@ const ShowBook = () => {
         console.log(error);
         setIsLoading(false);
       });
-  }, []);
-
-  console.log(book);
+  }, [id]);
 
   return (
   <div className='p-4'>
